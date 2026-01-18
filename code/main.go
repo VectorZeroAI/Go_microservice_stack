@@ -42,7 +42,8 @@ Map of action codes to actions:
 func postDataHandler(w http.ResponseWriter, r *http.Request) {
 	// Parse the JSON body
 	var d data
-	if err := json.NewDecoder(r.Body).Decode(&d); err != nil {
+	err := json.NewDecoder(r.Body).Decode(&d);
+	if err != nil {
 		http.Error(w, "invalid JSON", http.StatusBadRequest)
 		return
 	}
